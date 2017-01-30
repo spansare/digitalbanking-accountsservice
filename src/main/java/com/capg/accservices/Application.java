@@ -3,7 +3,7 @@ package com.capg.accservices;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-//import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 
 import org.apache.log4j.Logger;
@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
  * @author mahenata
  *
  */
-public class Application {
+public class Application extends SpringBootServletInitializer{
 
 	private static Logger log = Logger.getLogger(Application.class);
 
@@ -23,4 +23,9 @@ public class Application {
 		log.info("Logger enabled: Entering main \n\n");
 		SpringApplication.run(Application.class, args);
 	}
+	
+	@Override
+        protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(ServletInitializer.class);
+    	}
 }
